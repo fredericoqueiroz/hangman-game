@@ -7,6 +7,10 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+enum sizeConstants {
+  BUFSIZE = 128
+};
+
 int main(int argc, char **argv){
     
     if(argc != 2){
@@ -55,11 +59,15 @@ int main(int argc, char **argv){
         exit(1);
     }
 
+    int messageBuffer[BUFSIZE];
+
     while(1){ //Infinite loop
 
+        memset(&messageBuffer, 0, sizeof(messageBuffer));
         struct sockaddr_in clientAddress; // Client Address
         // Set len of clientAddress structure
         socklen_t clientAddressLen = sizeof(clientAddress);
+
         printf("Wainting for client...\n");
         // Wait for client to connect
         int clientSocket = accept(serverSocket, (struct sockaddr *) &clientAddress, &clientAddressLen);
@@ -76,12 +84,15 @@ int main(int argc, char **argv){
         else
             fputs("Unable to get cliente address\n", stderr);
 
-
+        // Sending message type 1
         ssize_t numBytesSend = send(clientSocket, begin_message, sizeof(begin_message), 0);
 
         printf("Bytes enviados na mensagem 1: %ld\n", numBytesSend);
-
-        //send(clientSocket, server_message, sizeof(server_message), 0);
+        while(1){
+            //send(clientSocket, server_message, sizeof(server_message), 0);
+            recv(clientSocket, messageBuffer, sizeof(messageBuffer), 0);
+            printf("Guess Recived (Type | Guess): %d | %d\n", messageBuffer[0], messageBuffer[1]);
+        }
     }
     //close(serverSocket);
     return 0;

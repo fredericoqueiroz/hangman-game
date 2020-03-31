@@ -8,6 +8,10 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+enum sizeConstants {
+  BUFSIZE = 128
+};
+
 int main(int argc, char **argv){
 
     if(argc < 3){
@@ -47,12 +51,23 @@ int main(int argc, char **argv){
 
 
     //recieve data from the server
-    //char server_response[256];
-    int server_response[2];
-    recv(network_socket, &server_response, sizeof(server_response), 0);
+    //char begin_response[256];
+    int begin_response[2];
+    recv(network_socket, &begin_response, sizeof(begin_response), 0);
 
-    printf("Server message type:%d\n", server_response[0]);
-    printf("Word size:%d\n", server_response[1]);
+    printf("Message recived (Type | Word size): %d | %d\n", begin_response[0], begin_response[1]);
+    //printf("Server message type:%d\n", begin_response[0]);
+    //printf("Word size:%d\n", begin_response[1]);
+    int messageBuffer[BUFSIZE];
+    memset(&messageBuffer, 0, sizeof(messageBuffer));
+    //send(clientSocket, server_message, sizeof(server_message), 0);
+    do{
+        messageBuffer[0] = 2;
+        printf("Palpite: ");
+        scanf("%d", &messageBuffer[1]);
+        send(network_socket, messageBuffer, sizeof(messageBuffer), 0);
+        printf("Palpite enviado\n");
+    } while(1);
 
     //closing socket
     close(network_socket);
