@@ -47,10 +47,12 @@ int main(int argc, char **argv){
 
 
     //recieve data from the server
-    char server_response[256];
+    //char server_response[256];
+    int server_response[2];
     recv(network_socket, &server_response, sizeof(server_response), 0);
 
-    printf("Server data: %s\n", server_response);
+    printf("Server message type:%d\n", server_response[0]);
+    printf("Word size:%d\n", server_response[1]);
 
     //closing socket
     close(network_socket);

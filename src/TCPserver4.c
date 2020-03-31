@@ -16,7 +16,15 @@ int main(int argc, char **argv){
 
     in_port_t serverPort = atoi(argv[1]);
 
-    char server_message[256] = "Hello from server\n";
+    //char server_message[256] = "Hello from server\n";
+
+    char word[256] = "familia";
+
+    int begin_message[2];
+    begin_message[0] = 1;
+    begin_message[1] = strlen(word);
+
+    //printf("word size: %d", begin_message[1])
 
     //Create socket for incoming connections
     int serverSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -52,14 +60,14 @@ int main(int argc, char **argv){
         struct sockaddr_in clientAddress; // Client Address
         // Set len of clientAddress structure
         socklen_t clientAddressLen = sizeof(clientAddress);
-        printf("Wainting or client...\n");
+        printf("Wainting for client...\n");
         // Wait for client to connect
         int clientSocket = accept(serverSocket, (struct sockaddr *) &clientAddress, &clientAddressLen);
         if(clientSocket < 0){
             fputs("Erro in accept()", stderr);
             exit(1);
         }
-        printf("Accepted\n");
+
         //CONECTOU A UM CLIENTE!
 
         char clientName[INET_ADDRSTRLEN]; 
@@ -68,7 +76,12 @@ int main(int argc, char **argv){
         else
             fputs("Unable to get cliente address\n", stderr);
 
-        send(clientSocket, server_message, sizeof(server_message), 0);
+
+        ssize_t numBytesSend = send(clientSocket, begin_message, sizeof(begin_message), 0);
+
+        printf("Bytes enviados na mensagem 1: %ld\n", numBytesSend);
+
+        //send(clientSocket, server_message, sizeof(server_message), 0);
     }
     //close(serverSocket);
     return 0;
