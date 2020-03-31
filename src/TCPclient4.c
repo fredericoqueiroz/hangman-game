@@ -37,11 +37,14 @@ int main(int argc, char **argv){
         exit(1);
     }
 
+    printf("Trying to connect...\n");
     // Establish the connection to the server
     if(connect(network_socket, (struct sockaddr *) &serverAddress, sizeof(serverAddress)) < 0){
         fputs("Erro in connect()", stderr);
         exit(1);
     }
+    printf("Connected...\n");
+
 
     //recieve data from the server
     char server_response[256];

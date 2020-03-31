@@ -16,11 +16,11 @@ int main(int argc, char **argv){
 
     in_port_t serverPort = atoi(argv[1]);
 
-    char server_message[256] = "You have a missed call from server";
+    char server_message[256] = "Hello from server\n";
 
     //Create socket for incoming connections
-    int server_socket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if(server_socket < 0){
+    int serverSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    if(serverSocket < 0){
         fputs("Erro in socket()", stderr);
         exit(1);
     }
@@ -33,22 +33,43 @@ int main(int argc, char **argv){
     serverAddress.sin_addr.s_addr = htonl(INADDR_ANY);
     //serverAddress.sin_addr.s_addr = inet_addr("127.0.0.1");
 
+    printf("Server Socket running on Port %d\n", ntohs(serverAddress.sin_port));
+
     //Bind to the local address
-    if(bind(server_socket, (struct sockaddr*) &serverAddress, sizeof(serverAddress)) < 0){
+    if(bind(serverSocket, (struct sockaddr*) &serverAddress, sizeof(serverAddress)) < 0){
         fputs("Erro in bind()", stderr);
         exit(1);
     }
 
     //Listen for incoming connections
-    if(listen(server_socket, 5) < 0){
+    if(listen(serverSocket, 5) < 0){
         fputs("Erro in listen()", stderr);
         exit(1);
     }
 
-    int cliente_socket = accept(server_socket, NULL, NULL);
+    while(1){ //Infinite loop
 
-    send(cliente_socket, server_message, sizeof(server_message), 0);
+        struct sockaddr_in clientAddress; // Client Address
+        // Set len of clientAddress structure
+        socklen_t clientAddressLen = sizeof(clientAddress);
+        printf("Wainting or client...\n");
+        // Wait for client to connect
+        int clientSocket = accept(serverSocket, (struct sockaddr *) &clientAddress, &clientAddressLen);
+        if(clientSocket < 0){
+            fputs("Erro in accept()", stderr);
+            exit(1);
+        }
+        printf("Accepted\n");
+        //CONECTOU A UM CLIENTE!
 
-    close(server_socket);
+        char clientName[INET_ADDRSTRLEN]; 
+        if(inet_ntop(AF_INET, &clientAddress.sin_addr.s_addr, clientName, sizeof(clientName)) != NULL)
+            printf("Handling client %s/%d\n", clientName, ntohs(clientAddress.sin_port));
+        else
+            fputs("Unable to get cliente address\n", stderr);
+
+        send(clientSocket, server_message, sizeof(server_message), 0);
+    }
+    //close(serverSocket);
     return 0;
 }
