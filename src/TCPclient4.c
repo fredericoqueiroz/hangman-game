@@ -7,10 +7,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-
-enum sizeConstants {
-  BUFSIZE = 128
-};
+#include "lib/TCPUtility.h"
 
 int main(int argc, char **argv){
 
@@ -61,10 +58,14 @@ int main(int argc, char **argv){
     int messageBuffer[BUFSIZE];
     memset(&messageBuffer, 0, sizeof(messageBuffer));
     //send(clientSocket, server_message, sizeof(server_message), 0);
+    char guess[2];
     do{
-        messageBuffer[0] = 2;
         printf("Palpite: ");
-        scanf("%d", &messageBuffer[1]);
+        scanf("%s", guess);
+        //fflush(stdin);
+        //guess = getc(stdin);
+        messageBuffer[1] = (int) guess[0];
+        messageBuffer[0] = 2;
         send(network_socket, messageBuffer, sizeof(messageBuffer), 0);
         printf("Palpite enviado\n");
     } while(1);
