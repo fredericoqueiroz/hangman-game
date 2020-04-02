@@ -7,7 +7,7 @@ SRC_NAME_1=TCPserver4
 SRC_NAME_2=TCPclient4
 
 CC = gcc
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -g
 
 BIN_DIR = .
 SRC_DIR = ./src

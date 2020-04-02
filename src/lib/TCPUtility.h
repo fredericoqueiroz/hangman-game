@@ -13,7 +13,7 @@ void dieWithMessage(const char * file_name,int line_number, const char * format,
 void handleServerGame(int clientSocket, char * word);
 
 enum sizeConstants {
-  BUFSIZE = 128
+  BUFSIZE = 130
 };
 
 

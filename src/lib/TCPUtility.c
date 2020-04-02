@@ -15,32 +15,61 @@ void dieWithMessage(const char * file_name,int line_number, const char * format,
     exit (1);
 }
 
+void clearBuffer(int * buffer, const int bufferSize){
+    int i;
+    for(i=0; i<bufferSize; i++)
+        buffer[i] = 0;
+}
+
+void handleGuessMessage(int clientSocket, char * word, int * buffer){
+    int wordSize = strlen(word);
+    int i, j, occurrences = 0;
+    char guess = buffer[1];
+
+    //memset(&buffer, 0, sizeof(buffer));
+    clearBuffer(buffer, BUFSIZE);
+    j = 2;
+    for(i=0; i<wordSize; i++){
+        if(guess == word[i]){
+            buffer[j] = i;
+            j++;
+            occurrences++;
+        }
+    }
+    buffer[0] = 3;
+    buffer[1] = occurrences;
+
+    printf("Buffer:");
+    for(i=0; i<occurrences+2; i++){
+        printf(" %d", buffer[i]);
+    }
+    printf("\n");
+
+    //send(clientSocket, buffer, sizeof(buffer), 0);
+
+}
+
 void handleServerGame(int clientSocket, char * word){
     int buffer[BUFSIZE];
-    memset(&buffer, -1, sizeof(buffer));
-
+    clearBuffer(buffer, BUFSIZE);
+    //memset(&buffer, -1, sizeof(buffer));
+    printf("Last position buffer %d\n", buffer[BUFSIZE-1]);
     //Sending the begin game message (type 1)
     buffer[0] = 1;
     buffer[1] = strlen(word);
     //ssize_t numBytesSend = send(clientSocket, buffer, sizeof(buffer), 0);
     send(clientSocket, buffer, sizeof(buffer), 0);
 
-    //Handle the guess and result messages (type 2 and type 3)
-    while(1){
-        memset(&buffer, -1, sizeof(buffer));
+    //printf("Word: %s %d\n", word, buffer[1]);
+    //Handle the guess and result messages (type 2 and type 3)/    
+    while(1){ // ENQUANTO A PALAVRA NAO FOI ENCONTRADA
+        //memset(&buffer, -1, sizeof(buffer));
+        clearBuffer(buffer, BUFSIZE);
         recv(clientSocket, buffer, sizeof(buffer), 0);
         printf("Guess Recived (Type | Guess): %d | %d\n", buffer[0], buffer[1]);
-        //HANDLE GUESS FUNCTION
-            // itera sobre a palavra verificando se o palpite existe na posicao i da palavra
-                // se sim
-                    // seta a posicao i+2 do buffer da mensagem de resposta
-                    // incrementa numero de ocorrencias
-                // se nao
-                    // verifica a posicao seguinte da palavra (nao faz nada)
-            
-            // envia mensagem de resposta
-    
 
+        handleGuessMessage(clientSocket, word, buffer);
 
+        
     }
 }
