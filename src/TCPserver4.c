@@ -7,7 +7,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <errno.h>
-#include "lib/TCPUtility.h"
+#include "lib/protocolUtility.h"
 
 int main(int argc, char **argv){
 
@@ -63,7 +63,7 @@ int main(int argc, char **argv){
 
         //HANDLE THE GAME WITH CLIENT
         handleServerGame(clientSocket, word);
-
+        close(clientSocket);
     }
     //close(serverSocket);
     return 0;

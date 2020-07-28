@@ -1,9 +1,4 @@
-#include <sys/socket.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <string.h>
-#include "TCPUtility.h"
+#include "protocolUtility.h"
 
 void dieWithMessage(const char * file_name,int line_number, const char * format, ...){
     va_list vargs;
