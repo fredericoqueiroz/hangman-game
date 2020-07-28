@@ -7,7 +7,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <lib/protocolUtility.h>
+#include "lib/protocolUtility.h"
 
 int main(int argc, char **argv){
 

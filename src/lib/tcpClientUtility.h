@@ -6,8 +6,10 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h> // addrinfo
-#include <protocolUtility.h>
+#include "protocolUtility.h"
 
 int setupClientSocket(const char *host, const char *service);
+
+void handleClientGame(int clientSocket);
 
 #endif
