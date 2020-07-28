@@ -7,7 +7,7 @@ void dieWithMessage(const char * file_name,int line_number, const char * format,
     vfprintf(stderr, format, vargs);
     fprintf (stderr, ".\n");
     va_end (vargs);
-    exit (1);
+    exit (EXIT_FAILURE);
 }
 
 void clearBuffer(int * buffer, const int bufferSize){

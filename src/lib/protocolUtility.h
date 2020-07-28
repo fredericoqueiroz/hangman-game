@@ -12,7 +12,6 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
-
 enum sizeConstants {
   BUFSIZE = 130,
   MAX_OCCURRENCES = 255
