@@ -3,8 +3,8 @@ SHELL:=/bin/bash -O globstar
 BIN_NAME_1 = servidor
 BIN_NAME_2 = cliente
 
-SRC_NAME_1=TCPserver4
-SRC_NAME_2=TCPclient4
+SRC_NAME_1=tcpServer
+SRC_NAME_2=tcpClient
 
 CC = gcc
 CFLAGS = -Wall -Wextra -g

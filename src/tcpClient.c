@@ -16,7 +16,8 @@ int main(int argc, char **argv){
         dieWithMessage(__FILE__, __LINE__, "Sintaxe de Uso: %s <ip-servidor> <porta-servidor>", argv[0]);
 
     char *serverIP = argv[1];
-    in_port_t service = atoi(argv[2]);
+    //in_port_t service = atoi(argv[2]);
+    char *service = argv[2];
 
     // Setup a connected TCP sream socket
     int networkSocket = setupClientSocket(serverIP, service);

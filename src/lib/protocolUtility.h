@@ -14,7 +14,8 @@
 
 enum sizeConstants {
   BUFSIZE = 130,
-  MAX_OCCURRENCES = 255
+  MAX_OCCURRENCES = 255,
+  MAX_REQUESTS = 5
 };
 
 typedef struct MessageInfo
@@ -30,5 +31,8 @@ typedef struct MessageInfo
 void dieWithMessage(const char * file_name,int line_number, const char * format, ...);
 
 void handleServerGame(int clientSocket, char * word);
+
+//For debugging
+void PrintSocketAddress(const struct sockaddr *address, FILE *stream);
 
 #endif
