@@ -6,6 +6,8 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h> // addrinfo
+#include <errno.h>
+#include <arpa/inet.h>
 #include "protocolUtility.h"
 
 int setupClientSocket(const char *host, const char *service);

@@ -10,13 +10,13 @@ void dieWithMessage(const char * file_name,int line_number, const char * format,
     exit (EXIT_FAILURE);
 }
 
-void clearBuffer(int * buffer, const int bufferSize){
+/* void clearBuffer(int * buffer, const int bufferSize){
     int i;
     for(i=0; i<bufferSize; i++)
         buffer[i] = 0;
-}
+} */
 
-void handleGuessMessage(int clientSocket, char * word, int * buffer){
+/* void handleGuessMessage(int clientSocket, char * word, int * buffer){
     int wordSize = strlen(word);
     int i, j, occurrences = 0;
     char guess = buffer[1];
@@ -42,9 +42,9 @@ void handleGuessMessage(int clientSocket, char * word, int * buffer){
 
     //send(clientSocket, buffer, sizeof(buffer), 0);
 
-}
+} */
 
-void handleServerGame(int clientSocket, char * word){
+/* void handleServerGame(int clientSocket, char * word){
     int buffer[BUFSIZE];
     clearBuffer(buffer, BUFSIZE);
     //memset(&buffer, -1, sizeof(buffer));
@@ -67,9 +67,9 @@ void handleServerGame(int clientSocket, char * word){
 
         
     }
-}
+} */
 
-void PrintSocketAddress(const struct sockaddr *address, FILE *stream) {
+void printSocketAddress(const struct sockaddr *address, FILE *stream) {
   // Test for address and stream
   if (address == NULL || stream == NULL)
     return;
@@ -102,4 +102,71 @@ void PrintSocketAddress(const struct sockaddr *address, FILE *stream) {
       fprintf(stream, "-%u", port);
   }
   
+}
+
+void printMessage(Message message){
+  fprintf(stdout, "Message Type: %d\n", message.messageType);
+  switch (message.messageType){
+  case 1:
+    fprintf(stdout, "Message Type: %d\n", message.messageType);
+    fprintf(stdout, "Word Size: %d\n", message.wordSize);
+    break;
+  case 2:
+    fprintf(stdout, "Message Type: %d\n", message.messageType);
+    fprintf(stdout, "Guessed Letter: %d\n", message.guessedLetter);
+    break;
+  case 3:
+    fprintf(stdout, "Message Type: %d\n", message.messageType);
+    fprintf(stdout, "Number of occurences:%d\n", message.occurrencesNumber);
+    fprintf(stdout, "Positions:");
+    for(int i=0; i < message.occurrencesNumber; i++)
+      fprintf(stdout, " %d\n", message.occurrencesPosition[i]);
+    fprintf(stdout, "\n");
+    break;
+  case 4:
+    fprintf(stdout, "Message Type: %d\n", message.messageType);
+  default:
+    fprintf(stdout, "Invalid message type\n");
+    break;
+  }
+}
+
+void receiveMessage(int streamSocket, Message *message){
+  FILE *stream = fdopen(streamSocket, "r");
+
+  // read the message from the socket stream
+/*   if(fread(message, sizeof(Message), 1, stream) != 1)
+    dieWithMessage(__FILE__, __LINE__, "error: fread(): %s",strerror(errno)); */
+  fread(message, sizeof(Message), 1, stream);
+
+  // convert to host byte order
+  message->messageType = message->messageType;
+  message->wordSize = ntohs(message->wordSize);
+  message->guessedLetter = ntohs(message->guessedLetter);
+  message->occurrencesNumber = ntohs(message->occurrencesNumber);
+  for(int i=0; i < message->occurrencesNumber; i++)
+    message->occurrencesPosition[i] = ntohs(message->occurrencesPosition[i]);
+
+  //fprintf(stdout, "Message Type: %d\n", message->messageType);
+
+  fclose(stream);
+}
+
+void sendMessage(int streamSocket, Message *message){
+
+  fprintf(stdout, "send2: Message Type: %d\n", message->messageType);
+
+  // HTONS ESTAH ALTERANDO O messageType (remover htons)
+  // convert to network byte order
+  message->messageType = message->messageType;
+  message->wordSize = htons(message->wordSize);
+  message->guessedLetter = htons(message->guessedLetter);
+  message->occurrencesNumber = htons(message->occurrencesNumber);
+  for(int i=0; i < message->occurrencesNumber; i++)
+    message->occurrencesPosition[i] = htons(message->occurrencesPosition[i]);
+
+  fprintf(stdout, "send2: Message Type: %d\n", message->messageType);
+
+  if(send(streamSocket, &message, sizeof(Message), 0) != sizeof(Message))
+    dieWithMessage(__FILE__, __LINE__, "error: send(): %s",strerror(errno));
 }

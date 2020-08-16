@@ -21,6 +21,8 @@ int main(int argc, char **argv){
         // Create new connection to client socket
         int clientSocket = acceptClientConnection(serverSocket);
 
+        handleServerGame(serverSocket, "casa");
+
         close(clientSocket);
     }
 }

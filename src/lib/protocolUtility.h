@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <stdarg.h>
 #include <string.h>
+#include <errno.h>
 
 #include <unistd.h>
 #include <netdb.h>
@@ -30,9 +31,15 @@ typedef struct MessageInfo
 //Handle erro with user message
 void dieWithMessage(const char * file_name,int line_number, const char * format, ...);
 
-void handleServerGame(int clientSocket, char * word);
+//void handleServerGame(int clientSocket, char * word);
 
 //For debugging
-void PrintSocketAddress(const struct sockaddr *address, FILE *stream);
+void printSocketAddress(const struct sockaddr *address, FILE *stream);
+
+void printMessage(Message message);
+
+void receiveMessage(int streamSocket, Message *message);
+
+void sendMessage(int streamSocket, Message *message);
 
 #endif

@@ -12,4 +12,6 @@ int setupServerSocket(const char *service);
 
 int acceptClientConnection(int serverSocket);
 
+void handleServerGame(int serverSocket, const char *word);
+
 #endif

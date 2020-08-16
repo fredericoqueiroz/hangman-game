@@ -34,7 +34,7 @@ int setupServerSocket(const char *service){
                 dieWithMessage(__FILE__, __LINE__, "error: getsockname(): %s",strerror(errno));
             
             fputs("Binding to ", stdout);
-            PrintSocketAddress((struct sockaddr *) &localAddr, stdout);
+            printSocketAddress((struct sockaddr *) &localAddr, stdout);
             fputc('\n', stdout);
             break;
         }
@@ -58,8 +58,20 @@ int acceptClientConnection(int serverSocket){
 
     // clientSocket is connect to a client
     fputs("Handling client ", stdout);
-    PrintSocketAddress((struct sockaddr *) &clntAddr, stdout);
+    printSocketAddress((struct sockaddr *) &clntAddr, stdout);
     fputc('\n', stdout);
 
     return clientSocket;
 }
+
+void handleServerGame(int serverSocket, const char *word){
+    Message message; // Create the game message struct
+    memset(&message, 0, sizeof(message)); // empty struct
+
+    // Sending message 1
+    message.messageType = 1;
+    message.wordSize = strlen(word);
+    sendMessage(serverSocket, &message);
+
+}
+

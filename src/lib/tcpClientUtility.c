@@ -33,3 +33,19 @@ int setupClientSocket(const char *host, const char *service){
     freeaddrinfo(servAddr);
     return clientSocket;
 }
+
+void handleClientGame(int clientSocket){
+    Message message; // Create the game message struct
+    memset(&message, 0, sizeof(message)); // empty struct
+
+    // Receiving message 1
+    receiveMessage(clientSocket, &message);
+
+    printMessage(message);
+    
+    
+    // ReadMessage()
+    // ProcessMessage()
+
+    // game ends
+}
