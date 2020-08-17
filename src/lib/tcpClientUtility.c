@@ -42,8 +42,7 @@ void handleClientGame(int clientSocket){
     receiveMessage(clientSocket, &message);
 
     printMessage(message);
-    
-    
+
     // ReadMessage()
     // ProcessMessage()
 

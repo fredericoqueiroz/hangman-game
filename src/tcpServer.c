@@ -17,11 +17,11 @@ int main(int argc, char **argv){
     if(serverSocket < 0)
         dieWithMessage(__FILE__, __LINE__, "error: setupServerSocket(): %s",strerror(errno));
 
-    while(1){
+    for(;;){
         // Create new connection to client socket
         int clientSocket = acceptClientConnection(serverSocket);
 
-        handleServerGame(serverSocket, "casa");
+        handleServerGame(clientSocket, "casa");
 
         close(clientSocket);
     }

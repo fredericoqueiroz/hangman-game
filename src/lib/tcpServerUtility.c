@@ -64,14 +64,17 @@ int acceptClientConnection(int serverSocket){
     return clientSocket;
 }
 
-void handleServerGame(int serverSocket, const char *word){
+void handleServerGame(int clientSocket, const char *word){
+
     Message message; // Create the game message struct
     memset(&message, 0, sizeof(message)); // empty struct
 
     // Sending message 1
     message.messageType = 1;
     message.wordSize = strlen(word);
-    sendMessage(serverSocket, &message);
 
+    sendMessage(clientSocket, &message);
+
+    printMessage(message);
 }
 
