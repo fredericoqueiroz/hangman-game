@@ -71,22 +71,23 @@ void printMessage(Message message){
     break;
   }
 }
-/* 
+
 void receiveMessage(int streamSocket, Message *message){
 
-  FILE *instream = fdopen(streamSocket, "r");
+  if(recv(streamSocket, message, sizeof(message), 0) != sizeof(message))
+      dieWithMessage(__FILE__, __LINE__, "error: recv(): %s",strerror(errno));
+
+/*   FILE *instream = fdopen(streamSocket, "r");
 
   memset(message, 0, sizeof(Message));
 
   //fread(message, sizeof(Message), 1, instream);
   if(fread(message, sizeof(Message), 1, instream) != 1)
     dieWithMessage(__FILE__, __LINE__, "error: fread(): %s",strerror(errno));
-
-  fclose(instream);
+*/
 }
 
 void sendMessage(int streamSocket, Message *message){
   if(send(streamSocket, message, sizeof(Message), 0) != sizeof(Message))
     dieWithMessage(__FILE__, __LINE__, "error: send(): %s",strerror(errno));
 }
- */

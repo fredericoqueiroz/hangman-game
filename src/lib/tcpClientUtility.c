@@ -34,24 +34,18 @@ int setupClientSocket(const char *host, const char *service){
     return clientSocket;
 }
 
+/* 
 void receiveServerMessage(int streamSocket, Message *message){
-    FILE *instream = fdopen(streamSocket, "r");
-    memset(message, 0, sizeof(Message));
-
-    //fread(message, sizeof(Message), 1, instream);
-    if(fread(message, sizeof(Message), 1, instream) != 1)
-        dieWithMessage(__FILE__, __LINE__, "error: fread(): %s",strerror(errno));
-    
-    fclose(instream);
-    /* memset(message, 0, sizeof(Message));
-    recv(streamSocket, message, sizeof(message), 0);
-     */
+    //memset(message, 0, sizeof(Message));
+    if(recv(streamSocket, message, sizeof(message), 0) != sizeof(message))
+        dieWithMessage(__FILE__, __LINE__, "error: recv(): %s",strerror(errno));
 }
 
 void sendClientMessage(int streamSocket, Message *message){
     if(send(streamSocket, message, sizeof(Message), 0) != sizeof(Message))
         dieWithMessage(__FILE__, __LINE__, "error: send(): %s",strerror(errno));
 }
+ */
 
 void handleClientGame(int networkSocket){
 
@@ -59,16 +53,18 @@ void handleClientGame(int networkSocket){
     memset(&message, 0, sizeof(message)); // empty struct
 
     // Receiving message 1
-    receiveServerMessage(networkSocket, &message);
+    //receiveServerMessage(networkSocket, &message);
+    receiveMessage(networkSocket, &message);
     printMessage(message);
 
-    memset(&message, 0, sizeof(message));
+    //memset(&message, 0, sizeof(message));
     char guess = 'c';
     message.messageType = 2;
     message.guessedLetter = (uint8_t) guess;
 
     //sendClientMessage(networkSocket, &message);
-    //printMessage(message);
+    sendMessage(networkSocket, &message);
+    printMessage(message);
 /* 
     while (message.messageType != END_GAME_TYPE)
     {

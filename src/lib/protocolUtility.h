@@ -44,8 +44,8 @@ void printSocketAddress(const struct sockaddr *address, FILE *stream);
 
 void printMessage(Message message);
 
-//void receiveMessage(int streamSocket, Message *message);
+void receiveMessage(int streamSocket, Message *message);
 
-//void sendMessage(int streamSocket, Message *message);
+void sendMessage(int streamSocket, Message *message);
 
 #endif

@@ -63,26 +63,18 @@ int acceptClientConnection(int serverSocket){
     return clientSocket;
 }
 
+/* 
 void receiveClientMessage(int streamSocket, Message *message){
-
-  FILE *instream = fdopen(streamSocket, "r");
-
-  memset(message, 0, sizeof(Message));
-
-  //fread(message, sizeof(Message), 1, instream);
-  if(fread(message, sizeof(Message), 1, instream) != 1)
-    dieWithMessage(__FILE__, __LINE__, "error: fread(): %s",strerror(errno));
-
-  fclose(instream);
-
-/*     memset(message, 0, sizeof(Message));
-    recv(streamSocket, message, sizeof(message), 0); */
+    //memset(message, 0, sizeof(Message));
+    if(recv(streamSocket, message, sizeof(message), 0) != sizeof(message))
+        dieWithMessage(__FILE__, __LINE__, "error: recv(): %s",strerror(errno));
 }
 
 void sendServerMessage(int streamSocket, Message *message){
   if(send(streamSocket, message, sizeof(Message), 0) != sizeof(Message))
     dieWithMessage(__FILE__, __LINE__, "error: send(): %s",strerror(errno));
 }
+ */
 
 void handleServerGame(int clientSocket, const char *word){
 
@@ -92,9 +84,16 @@ void handleServerGame(int clientSocket, const char *word){
     // Sending message 1
     message.messageType = 1;
     message.wordSize = strlen(word);
-    sendServerMessage(clientSocket, &message);
+    //sendServerMessage(clientSocket, &message);
+    sendMessage(clientSocket, &message);
 
-    
+    receiveMessage(clientSocket, &message);
+    //receiveClientMessage(clientSocket, &message);
+    printMessage(message);
+
+    /* while(message.messageType != END_GAME_TYPE){
+        receiveClientMessage(clientSocket, &message);
+    } */
 /* 
     do
     {

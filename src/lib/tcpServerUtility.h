@@ -13,9 +13,9 @@ int setupServerSocket(const char *service);
 
 int acceptClientConnection(int serverSocket);
 
-void receiveClientMessage(int streamSocket, Message *message);
+//void receiveClientMessage(int streamSocket, Message *message);
 
-void sendServerMessage(int streamSocket, Message *message);
+//void sendServerMessage(int streamSocket, Message *message);
 
 void handleServerGame(int clientSocket, const char *word);
 
