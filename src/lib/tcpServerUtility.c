@@ -6,6 +6,8 @@ int setupServerSocket(const char *service){
     struct addrinfo addrCriteria; // criteria for address match
     memset(&addrCriteria, 0, sizeof(addrCriteria)); // empty struct
     addrCriteria.ai_family = AF_UNSPEC; // v4 or v6
+    //addrCriteria.ai_family = AF_INET6; // v6
+    //addrCriteria.ai_family = AF_INET; // v4
     addrCriteria.ai_flags = AI_PASSIVE; // any address/port
     addrCriteria.ai_socktype = SOCK_STREAM; // stream socket
     addrCriteria.ai_protocol = IPPROTO_TCP; // TCP protocol
@@ -65,8 +67,8 @@ int acceptClientConnection(int serverSocket){
 
 /* 
 void receiveClientMessage(int streamSocket, Message *message){
-    //memset(message, 0, sizeof(Message));
-    if(recv(streamSocket, message, sizeof(message), 0) != sizeof(message))
+    //memset(message, 0, sizeof(message));
+    if(recv(streamSocket, message, sizeof(Message), MSG_WAITALL) != sizeof(Message))
         dieWithMessage(__FILE__, __LINE__, "error: recv(): %s",strerror(errno));
 }
 
@@ -82,14 +84,36 @@ void handleServerGame(int clientSocket, const char *word){
     memset(&message, 0, sizeof(message)); // empty struct
 
     // Sending message 1
-    message.messageType = 1;
+    message.messageType = BEGIN_GAME_TYPE;
     message.wordSize = strlen(word);
-    //sendServerMessage(clientSocket, &message);
     sendMessage(clientSocket, &message);
 
-    receiveMessage(clientSocket, &message);
+    while (1){
+        //memset(&message, 0, sizeof(message)); // empty struct
+        receiveMessage(clientSocket, &message);
+        fprintf(stdout, "Type: %d\n", message.messageType);
+        printMessage(message);
+
+        /* message.messageType = ANSWER_TYPE;
+        message.occurrencesNumber = 1;
+        message.occurrencesPosition[0] = 0;
+        
+ */
+        //message.messageType = END_GAME_TYPE;
+        //sendMessage(clientSocket, &message);
+        //printMessage(message);
+
+        //receiveMessage(clientSocket, &message);
+        //printMessage(message);
+
+/*         message.messageType = END_GAME_TYPE;
+        sendMessage(clientSocket ,&message);
+        printMessage(message); */
+    }
+
+    //receiveMessage(clientSocket, &message);
     //receiveClientMessage(clientSocket, &message);
-    printMessage(message);
+    //printMessage(message);
 
     /* while(message.messageType != END_GAME_TYPE){
         receiveClientMessage(clientSocket, &message);

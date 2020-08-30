@@ -53,40 +53,23 @@ void handleClientGame(int networkSocket){
     memset(&message, 0, sizeof(message)); // empty struct
 
     // Receiving message 1
-    //receiveServerMessage(networkSocket, &message);
     receiveMessage(networkSocket, &message);
     printMessage(message);
 
-    //memset(&message, 0, sizeof(message));
-    char guess = 'c';
-    message.messageType = 2;
-    message.guessedLetter = (uint8_t) guess;
+    char guess[2];
 
-    //sendClientMessage(networkSocket, &message);
-    sendMessage(networkSocket, &message);
-    printMessage(message);
-/* 
-    while (message.messageType != END_GAME_TYPE)
-    {
-        memset(&message, 0, sizeof(message)); // empty struct
-        char guess;
-        scanf("%c", &guess); // get guessed letter 
-
-        message.guessedLetter = (uint8_t) guess;
+    while (message.messageType != END_GAME_TYPE){
+        fscanf(stdin, "%s", guess);
+        //fflush(stdin);
+        //scanf("%c", &guess); // get guessed letter 
         message.messageType = GUESS_TYPE;
-
+        message.guessedLetter = (uint8_t) guess[0];
+        sendMessage(networkSocket, &message); // Sending guess (message 2)  <- INVESTIGAR
         printMessage(message);
-        sendClientMessage(networkSocket, &message);
 
-        //memset(&message, 0, sizeof(message)); // empty struct
-        receiveServerMessage(networkSocket, &message);
-        printMessage(message);
+        //receiveMessage(networkSocket, &message); // Recieving answer (message 3)
+        //printMessage(message);
     }
-     */
-
-    // ReadMessage()
-    // ProcessMessage()
-
     // game ends
 }
 

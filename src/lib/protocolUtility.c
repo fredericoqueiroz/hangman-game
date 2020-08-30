@@ -74,7 +74,7 @@ void printMessage(Message message){
 
 void receiveMessage(int streamSocket, Message *message){
 
-  if(recv(streamSocket, message, sizeof(message), 0) != sizeof(message))
+  if(recv(streamSocket, message, sizeof(Message), 0) != sizeof(Message))
       dieWithMessage(__FILE__, __LINE__, "error: recv(): %s",strerror(errno));
 
 /*   FILE *instream = fdopen(streamSocket, "r");
