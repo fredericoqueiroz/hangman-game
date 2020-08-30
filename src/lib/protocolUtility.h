@@ -14,9 +14,15 @@
 #include <arpa/inet.h>
 
 enum sizeConstants {
-  BUFSIZE = 130,
-  MAX_OCCURRENCES = 255,
+  MAX_OCCURRENCES = 256,
   MAX_REQUESTS = 5
+};
+
+enum messageTypes {
+  BEGIN_GAME_TYPE = 1,
+  GUESS_TYPE = 2,
+  ANSWER_TYPE = 3,
+  END_GAME_TYPE = 4
 };
 
 typedef struct MessageInfo
@@ -38,8 +44,8 @@ void printSocketAddress(const struct sockaddr *address, FILE *stream);
 
 void printMessage(Message message);
 
-void receiveMessage(int streamSocket, Message *message);
+//void receiveMessage(int streamSocket, Message *message);
 
-void sendMessage(int streamSocket, Message *message);
+//void sendMessage(int streamSocket, Message *message);
 
 #endif

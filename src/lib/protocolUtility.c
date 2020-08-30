@@ -46,16 +46,17 @@ void printSocketAddress(const struct sockaddr *address, FILE *stream) {
 }
 
 void printMessage(Message message){
+  
   switch (message.messageType){
-  case 1:
+  case BEGIN_GAME_TYPE:
     fprintf(stdout, "Message Type: %d\n", message.messageType);
     fprintf(stdout, "Word Size: %d\n", message.wordSize);
     break;
-  case 2:
+  case GUESS_TYPE:
     fprintf(stdout, "Message Type: %d\n", message.messageType);
-    fprintf(stdout, "Guessed Letter: %d\n", message.guessedLetter);
+    fprintf(stdout, "Guessed Letter: %c\n", (char) message.guessedLetter);
     break;
-  case 3:
+  case ANSWER_TYPE:
     fprintf(stdout, "Message Type: %d\n", message.messageType);
     fprintf(stdout, "Number of occurences:%d\n", message.occurrencesNumber);
     fprintf(stdout, "Positions:");
@@ -63,18 +64,21 @@ void printMessage(Message message){
       fprintf(stdout, " %d\n", message.occurrencesPosition[i]);
     fprintf(stdout, "\n");
     break;
-  case 4:
+  case END_GAME_TYPE:
     fprintf(stdout, "Message Type: %d\n", message.messageType);
   default:
     fprintf(stdout, "Invalid message type\n");
     break;
   }
 }
-
+/* 
 void receiveMessage(int streamSocket, Message *message){
-  
+
   FILE *instream = fdopen(streamSocket, "r");
 
+  memset(message, 0, sizeof(Message));
+
+  //fread(message, sizeof(Message), 1, instream);
   if(fread(message, sizeof(Message), 1, instream) != 1)
     dieWithMessage(__FILE__, __LINE__, "error: fread(): %s",strerror(errno));
 
@@ -85,3 +89,4 @@ void sendMessage(int streamSocket, Message *message){
   if(send(streamSocket, message, sizeof(Message), 0) != sizeof(Message))
     dieWithMessage(__FILE__, __LINE__, "error: send(): %s",strerror(errno));
 }
+ */

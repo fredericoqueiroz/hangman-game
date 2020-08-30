@@ -12,6 +12,10 @@
 
 int setupClientSocket(const char *host, const char *service);
 
-void handleClientGame(int clientSocket);
+void receiveServerMessage(int streamSocket, Message *message);
+
+void sendClientMessage(int streamSocket, Message *message);
+
+void handleClientGame(int networkSocket);
 
 #endif

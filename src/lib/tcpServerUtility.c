@@ -1,5 +1,4 @@
 #include "tcpServerUtility.h"
-#include "protocolUtility.h"
 
 int setupServerSocket(const char *service){
 
@@ -64,6 +63,27 @@ int acceptClientConnection(int serverSocket){
     return clientSocket;
 }
 
+void receiveClientMessage(int streamSocket, Message *message){
+
+  FILE *instream = fdopen(streamSocket, "r");
+
+  memset(message, 0, sizeof(Message));
+
+  //fread(message, sizeof(Message), 1, instream);
+  if(fread(message, sizeof(Message), 1, instream) != 1)
+    dieWithMessage(__FILE__, __LINE__, "error: fread(): %s",strerror(errno));
+
+  fclose(instream);
+
+/*     memset(message, 0, sizeof(Message));
+    recv(streamSocket, message, sizeof(message), 0); */
+}
+
+void sendServerMessage(int streamSocket, Message *message){
+  if(send(streamSocket, message, sizeof(Message), 0) != sizeof(Message))
+    dieWithMessage(__FILE__, __LINE__, "error: send(): %s",strerror(errno));
+}
+
 void handleServerGame(int clientSocket, const char *word){
 
     Message message; // Create the game message struct
@@ -72,9 +92,23 @@ void handleServerGame(int clientSocket, const char *word){
     // Sending message 1
     message.messageType = 1;
     message.wordSize = strlen(word);
+    sendServerMessage(clientSocket, &message);
 
-    sendMessage(clientSocket, &message);
+    
+/* 
+    do
+    {
+        //recv(clientSocket, &message, sizeof(message), 0);
+        receiveClientMessage(clientSocket, &message);
+        printMessage(message);
+        //message.messageType = 3;
+    } while (message.messageType != END_GAME_TYPE);
+     */
 
-    printMessage(message);
+    //printMessage(message);
+/* 
+    memset(&message, 0, sizeof(message)); // empty struct
+    message.messageType = END_GAME_TYPE;
+    sendServerMessage(clientSocket, &message); */
 }
 

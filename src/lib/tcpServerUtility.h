@@ -7,10 +7,15 @@
 #include <sys/socket.h>
 #include <netdb.h> // addrinfo
 #include <errno.h>
+#include "protocolUtility.h"
 
 int setupServerSocket(const char *service);
 
 int acceptClientConnection(int serverSocket);
+
+void receiveClientMessage(int streamSocket, Message *message);
+
+void sendServerMessage(int streamSocket, Message *message);
 
 void handleServerGame(int clientSocket, const char *word);
 
