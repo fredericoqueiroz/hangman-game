@@ -60,15 +60,14 @@ void handleClientGame(int networkSocket){
 
     while (message.messageType != END_GAME_TYPE){
         fscanf(stdin, "%s", guess);
-        //fflush(stdin);
-        //scanf("%c", &guess); // get guessed letter 
+        guess[1] = '\0';
         message.messageType = GUESS_TYPE;
         message.guessedLetter = (uint8_t) guess[0];
-        sendMessage(networkSocket, &message); // Sending guess (message 2)  <- INVESTIGAR
+        sendMessage(networkSocket, &message); // Sending guess (message 2)
         printMessage(message);
 
-        //receiveMessage(networkSocket, &message); // Recieving answer (message 3)
-        //printMessage(message);
+        receiveMessage(networkSocket, &message); // Recieving answer (message 3)
+        printMessage(message);
     }
     // game ends
 }

@@ -78,6 +78,40 @@ void sendServerMessage(int streamSocket, Message *message){
 }
  */
 
+
+
+void handleGuess(const char *word, uint8_t *mask, Message *message){
+
+    // Clean Occurrences
+    message->occurrencesNumber = 0;
+
+    for(int i=0; i < MAX_OCCURRENCES; i++)
+        message->occurrencesPosition[i] = 0;
+
+    for(int k=0; k < message->wordSize; k++){
+        if(word[k] == message->guessedLetter){
+            mask[k] = 1; // mark true all mask position corresponding to guess
+            message->occurrencesPosition[message->occurrencesNumber] = k;
+            message->occurrencesNumber += 1;
+        }
+    }
+
+    //check if the game is over
+    int gameover = 1;
+    for(int j=0; j < message->wordSize; j++){
+        if(mask[j] == 0){
+            gameover = 0;
+            break;
+        }
+    }
+
+    //write the result in the message
+    if(gameover)
+        message->messageType = END_GAME_TYPE;
+    else
+        message->messageType = ANSWER_TYPE;
+}
+
 void handleServerGame(int clientSocket, const char *word){
 
     Message message; // Create the game message struct
@@ -88,50 +122,21 @@ void handleServerGame(int clientSocket, const char *word){
     message.wordSize = strlen(word);
     sendMessage(clientSocket, &message);
 
-    while (1){
-        //memset(&message, 0, sizeof(message)); // empty struct
+    uint8_t mask[MAX_OCCURRENCES]; // Creating mask to 
+
+    for(int i=0; i < MAX_OCCURRENCES; i++)
+        mask[i] = 0;
+
+    while (message.messageType != END_GAME_TYPE){
+        // recieve guess (message 2)
         receiveMessage(clientSocket, &message);
-        fprintf(stdout, "Type: %d\n", message.messageType);
         printMessage(message);
 
-        /* message.messageType = ANSWER_TYPE;
-        message.occurrencesNumber = 1;
-        message.occurrencesPosition[0] = 0;
-        
- */
-        //message.messageType = END_GAME_TYPE;
-        //sendMessage(clientSocket, &message);
-        //printMessage(message);
+        handleGuess(word, mask, &message);
 
-        //receiveMessage(clientSocket, &message);
-        //printMessage(message);
-
-/*         message.messageType = END_GAME_TYPE;
         sendMessage(clientSocket ,&message);
-        printMessage(message); */
-    }
-
-    //receiveMessage(clientSocket, &message);
-    //receiveClientMessage(clientSocket, &message);
-    //printMessage(message);
-
-    /* while(message.messageType != END_GAME_TYPE){
-        receiveClientMessage(clientSocket, &message);
-    } */
-/* 
-    do
-    {
-        //recv(clientSocket, &message, sizeof(message), 0);
-        receiveClientMessage(clientSocket, &message);
         printMessage(message);
-        //message.messageType = 3;
-    } while (message.messageType != END_GAME_TYPE);
-     */
-
-    //printMessage(message);
-/* 
-    memset(&message, 0, sizeof(message)); // empty struct
-    message.messageType = END_GAME_TYPE;
-    sendServerMessage(clientSocket, &message); */
+    }
+    //game ends
 }
 
