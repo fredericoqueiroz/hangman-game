@@ -29,13 +29,12 @@ enum messageTypes {
   END_GAME_TYPE = 4
 };
 
-typedef struct MessageInfo
-{
+typedef struct MessageInfo {
   u_int8_t messageType; // Used in Messages {1,2,3,4}
   u_int8_t wordSize; // Used in Message {1}
   u_int8_t guessedLetter; // Used in Message {2}
   u_int8_t occurrencesNumber; // Used in Message {3}
-  u_int8_t occurrencesPosition[MAX_OCCURRENCES]; // Used in Message [3]
+  u_int8_t occurrencesPosition[MAX_OCCURRENCES]; // Used in Message {3}
 } Message;
 
 //Handle erro with user message

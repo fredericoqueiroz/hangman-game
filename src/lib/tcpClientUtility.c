@@ -5,7 +5,7 @@ int setupClientSocket(const char *host, const char *service){
     // Define the criteria for address match
     struct addrinfo addrCriteria; // criteria for address match
     memset(&addrCriteria, 0, sizeof(addrCriteria)); // empty struct
-    addrCriteria.ai_family = AF_UNSPEC;     // v4 or v6
+    addrCriteria.ai_family = AF_UNSPEC;     // IPv4 or IPv6 (any address family)
     addrCriteria.ai_socktype = SOCK_STREAM; // stream socket
     addrCriteria.ai_protocol = IPPROTO_TCP; // TCP protocol
 
