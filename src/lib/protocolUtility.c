@@ -58,10 +58,12 @@ void printMessage(Message message){
   case ANSWER_TYPE:
     fprintf(stdout, "Message Type: %d\n", message.messageType);
     fprintf(stdout, "Number of occurences:%d\n", message.occurrencesNumber);
-    fprintf(stdout, "Positions:");
-    for(int i=0; i < message.occurrencesNumber; i++)
-      fprintf(stdout, " %d", message.occurrencesPosition[i]);
-    fprintf(stdout, "\n");
+    if (message.occurrencesNumber){
+      fprintf(stdout, "Positions:");
+      for(int i=0; i < message.occurrencesNumber; i++)
+        fprintf(stdout, " %d", message.occurrencesPosition[i] + 1);
+      fprintf(stdout, "\n");
+    }
     break;
   case END_GAME_TYPE:
     fprintf(stdout, "Message Type: %d\n", message.messageType);

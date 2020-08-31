@@ -51,9 +51,9 @@ void handleClientGame(int networkSocket){
         message.messageType = GUESS_TYPE;
         message.guessedLetter = (uint8_t) guess[0];
         sendMessage(networkSocket, &message); // Sending guess (message 2)
-        printMessage(message);
+        //printMessage(message);
 
-        receiveMessage(networkSocket, &message); // Recieving answer (message 3)
+        receiveMessage(networkSocket, &message); // Recieving answer (message 3 || message 4)
         printMessage(message);
     }
     // game ends

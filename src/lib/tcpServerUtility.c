@@ -106,8 +106,7 @@ void handleServerGame(int clientSocket, const char *word){
     message.wordSize = strlen(word);
     sendMessage(clientSocket, &message);
 
-    uint8_t mask[MAX_OCCURRENCES]; // Creating mask to 
-
+    uint8_t mask[MAX_OCCURRENCES]; // Create mask to control the state of the game
     for(int i=0; i < MAX_OCCURRENCES; i++)
         mask[i] = 0;
 
@@ -119,7 +118,7 @@ void handleServerGame(int clientSocket, const char *word){
         handleGuess(word, mask, &message);
 
         sendMessage(clientSocket ,&message);
-        printMessage(message);
+        //printMessage(message);
     }
     //game ends
 }
