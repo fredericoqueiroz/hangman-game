@@ -13,6 +13,10 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
+#define IP_VERSION AF_INET
+// AF_INET : IPv4
+// AF_INET6: IPv6
+
 enum sizeConstants {
   MAX_OCCURRENCES = 256,
   MAX_REQUESTS = 5
@@ -34,18 +38,17 @@ typedef struct MessageInfo
   u_int8_t occurrencesPosition[MAX_OCCURRENCES]; // Message [3]
 } Message;
 
-//Handle erro with user message
-void dieWithMessage(const char * file_name,int line_number, const char * format, ...);
-
-//void handleServerGame(int clientSocket, char * word);
-
-//For debugging
-void printSocketAddress(const struct sockaddr *address, FILE *stream);
 
 void printMessage(Message message);
 
 void receiveMessage(int streamSocket, Message *message);
 
 void sendMessage(int streamSocket, Message *message);
+
+//For debugging
+void printSocketAddress(const struct sockaddr *address, FILE *stream);
+
+//Handle erro with user message
+void dieWithMessage(const char * file_name,int line_number, const char * format, ...);
 
 #endif

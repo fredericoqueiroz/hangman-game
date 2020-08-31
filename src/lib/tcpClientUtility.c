@@ -34,19 +34,6 @@ int setupClientSocket(const char *host, const char *service){
     return clientSocket;
 }
 
-/* 
-void receiveServerMessage(int streamSocket, Message *message){
-    //memset(message, 0, sizeof(Message));
-    if(recv(streamSocket, message, sizeof(message), 0) != sizeof(message))
-        dieWithMessage(__FILE__, __LINE__, "error: recv(): %s",strerror(errno));
-}
-
-void sendClientMessage(int streamSocket, Message *message){
-    if(send(streamSocket, message, sizeof(Message), 0) != sizeof(Message))
-        dieWithMessage(__FILE__, __LINE__, "error: send(): %s",strerror(errno));
-}
- */
-
 void handleClientGame(int networkSocket){
 
     Message message; // Create the game message struct

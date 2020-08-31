@@ -5,15 +5,13 @@ int setupServerSocket(const char *service){
     // Define the criteria for address match
     struct addrinfo addrCriteria; // criteria for address match
     memset(&addrCriteria, 0, sizeof(addrCriteria)); // empty struct
-    addrCriteria.ai_family = AF_UNSPEC; // v4 or v6
-    //addrCriteria.ai_family = AF_INET6; // v6
-    //addrCriteria.ai_family = AF_INET; // v4
+    addrCriteria.ai_family = IP_VERSION; // Defined in protocolUtility.h
     addrCriteria.ai_flags = AI_PASSIVE; // any address/port
     addrCriteria.ai_socktype = SOCK_STREAM; // stream socket
     addrCriteria.ai_protocol = IPPROTO_TCP; // TCP protocol
 
     // Get address
-    struct addrinfo *servAddr; // holder for returned list of server addrs
+    struct addrinfo *servAddr;
     int rtnAddrInfo = getaddrinfo(NULL, service, &addrCriteria, &servAddr);
     if(rtnAddrInfo != 0)
         dieWithMessage(__FILE__, __LINE__, "error: getaddrinfo(): %s", gai_strerror(rtnAddrInfo));
@@ -34,9 +32,9 @@ int setupServerSocket(const char *service){
             if(getsockname(serverSocket, (struct sockaddr *) &localAddr, &addrSize) < 0)
                 dieWithMessage(__FILE__, __LINE__, "error: getsockname(): %s",strerror(errno));
             
-            fputs("Binding to ", stdout);
+            fprintf(stdout, "Binding to ");
             printSocketAddress((struct sockaddr *) &localAddr, stdout);
-            fputc('\n', stdout);
+            fprintf(stdout,"\n");
             break;
         }
 
@@ -65,29 +63,15 @@ int acceptClientConnection(int serverSocket){
     return clientSocket;
 }
 
-/* 
-void receiveClientMessage(int streamSocket, Message *message){
-    //memset(message, 0, sizeof(message));
-    if(recv(streamSocket, message, sizeof(Message), MSG_WAITALL) != sizeof(Message))
-        dieWithMessage(__FILE__, __LINE__, "error: recv(): %s",strerror(errno));
-}
-
-void sendServerMessage(int streamSocket, Message *message){
-  if(send(streamSocket, message, sizeof(Message), 0) != sizeof(Message))
-    dieWithMessage(__FILE__, __LINE__, "error: send(): %s",strerror(errno));
-}
- */
-
-
-
 void handleGuess(const char *word, uint8_t *mask, Message *message){
 
-    // Clean Occurrences
+    // Clean occurrences
     message->occurrencesNumber = 0;
 
     for(int i=0; i < MAX_OCCURRENCES; i++)
         message->occurrencesPosition[i] = 0;
 
+    // Check the guess
     for(int k=0; k < message->wordSize; k++){
         if(word[k] == message->guessedLetter){
             mask[k] = 1; // mark true all mask position corresponding to guess

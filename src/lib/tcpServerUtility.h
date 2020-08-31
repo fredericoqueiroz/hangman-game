@@ -13,10 +13,6 @@ int setupServerSocket(const char *service);
 
 int acceptClientConnection(int serverSocket);
 
-//void receiveClientMessage(int streamSocket, Message *message);
-
-//void sendServerMessage(int streamSocket, Message *message);
-
 void handleGuess(const char *word, uint8_t *mask, Message *message);
 
 void handleServerGame(int clientSocket, const char *word);

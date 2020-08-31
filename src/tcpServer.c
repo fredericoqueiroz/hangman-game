@@ -9,7 +9,6 @@ int main(int argc, char **argv){
     if(argc != 2)
         dieWithMessage(__FILE__, __LINE__, "Sintaxe de Uso: %s <Server Port>", argv[0]);
 
-    //in_port_t service = atoi(argv[1]);
     char * service = argv[1];
 
     //Create socket for incoming connections
@@ -17,7 +16,8 @@ int main(int argc, char **argv){
     if(serverSocket < 0)
         dieWithMessage(__FILE__, __LINE__, "error: setupServerSocket(): %s",strerror(errno));
 
-    for(;;){
+    // Run server forever
+    while(1){
         // Create new connection to client socket
         int clientSocket = acceptClientConnection(serverSocket);
 
@@ -25,4 +25,7 @@ int main(int argc, char **argv){
 
         close(clientSocket);
     }
+
+    close(serverSocket);
+    return 0;
 }
