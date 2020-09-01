@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.25)  31 AUG 2020 21:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.25)  31 AUG 2020 21:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -746,37 +746,37 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 23.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 31.
+(babel)             in language  on input line 32.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 36.
+(babel)             in language  on input line 37.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 55.
+(babel)             in language  on input line 56.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 55.
+(babel)             in language  on input line 56.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 <Figura2.png, id=50, 436.63126pt x 101.62968pt>
 File: Figura2.png Graphic file (type png)
 <use Figura2.png>
-Package pdftex.def Info: Figura2.png  used on input line 59.
+Package pdftex.def Info: Figura2.png  used on input line 60.
 (pdftex.def)             Requested size: 436.63019pt x 101.62943pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 60.
+(caption)                particular \caption on input line 61.
 See the caption package documentation for explanation.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 66.
+(babel)             in language  on input line 67.
 <Figura1.png, id=51, 546.04pt x 740.7675pt>
 File: Figura1.png Graphic file (type png)
 <use Figura1.png>
-Package pdftex.def Info: Figura1.png  used on input line 70.
+Package pdftex.def Info: Figura1.png  used on input line 71.
 (pdftex.def)             Requested size: 337.79143pt x 458.24524pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 71.
+(caption)                particular \caption on input line 72.
 See the caption package documentation for explanation.
 
 Package babel Info: Redefining portuges shorthand "|
@@ -789,71 +789,71 @@ Package babel Info: Redefining portuges shorthand "|
 <Figura3.png, id=62, 353.06906pt x 53.44969pt>
 File: Figura3.png Graphic file (type png)
 <use Figura3.png>
-Package pdftex.def Info: Figura3.png  used on input line 89.
+Package pdftex.def Info: Figura3.png  used on input line 90.
 (pdftex.def)             Requested size: 353.06819pt x 53.44954pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 90.
+(caption)                particular \caption on input line 91.
 See the caption package documentation for explanation.
 
 <Figura4.png, id=63, 439.6425pt x 60.225pt>
 File: Figura4.png Graphic file (type png)
 <use Figura4.png>
-Package pdftex.def Info: Figura4.png  used on input line 94.
+Package pdftex.def Info: Figura4.png  used on input line 95.
 (pdftex.def)             Requested size: 439.64142pt x 60.22484pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 95.
+(caption)                particular \caption on input line 96.
 See the caption package documentation for explanation.
 
 <Figura5.png, id=64, 350.81062pt x 60.97781pt>
 File: Figura5.png Graphic file (type png)
 <use Figura5.png>
-Package pdftex.def Info: Figura5.png  used on input line 99.
+Package pdftex.def Info: Figura5.png  used on input line 100.
 (pdftex.def)             Requested size: 350.80975pt x 60.97765pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 100.
+(caption)                particular \caption on input line 101.
 See the caption package documentation for explanation.
 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 107.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 107.
-[3 </home/frq/GitHub/hangman-game/doc/Figura3.png (PNG copy)> </home/frq/GitHub/hangman-game/doc/Figura4.png (PNG copy)> </home/frq/GitHub/hangman-game/doc/Figura5.png (PNG copy)>]
-Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 108.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 126.
+(babel)             in language  on input line 108.
+[3 </home/frq/GitHub/hangman-game/doc/Figura3.png (PNG copy)> </home/frq/GitHub/hangman-game/doc/Figura4.png (PNG copy)> </home/frq/GitHub/hangman-game/doc/Figura5.png (PNG copy)>]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 134.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 139.
+(babel)             in language  on input line 109.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 127.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 135.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 140.
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 139.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 140.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 149.
+(babel)             in language  on input line 150.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 149.
+(babel)             in language  on input line 150.
  [4]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 151.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 169.
+(babel)             in language  on input line 152.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 170.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 169.
+(babel)             in language  on input line 170.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 169.
+(babel)             in language  on input line 170.
  [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 169.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 170.
  (/home/frq/GitHub/hangman-game/doc/doc.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 169.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 169.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 170.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 170.
 Package rerunfilecheck Info: File `doc.out' has not changed.
 (rerunfilecheck)             Checksum: 8AC543E6518DCCD25413D68326177D9D;622.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 169.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 170.
  ) 
 Here is how much of TeX's memory you used:
  10273 strings out of 492982
@@ -864,7 +864,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  41i,17n,39p,361b,994s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on /home/frq/GitHub/hangman-game/doc/doc.pdf (5 pages, 236112 bytes).
+Output written on /home/frq/GitHub/hangman-game/doc/doc.pdf (5 pages, 236100 bytes).
 PDF statistics:
  139 PDF objects out of 1000 (max. 8388607)
  116 compressed objects within 2 object streams
