@@ -8,6 +8,7 @@
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{listings}
 \usepackage{verbatim}
+\usepackage{hyperref}
 
 \begin{document}
 \title{%
@@ -104,7 +105,65 @@ Neste ponto em que o cliente tenta se conectar, o socket ainda não está limita
 e atribuir um endeço v4 mapeado a partir do endeço v6 ao socket no momento de executar a função \emph{connect()}.
 
 \newpage
-\section{Estrutura básica do projeto}
+\section{Estrutura do projeto}
 
+A seguir é apresentado a estrutura básica dos diretórios do projeto:
+\vspace{1em}
+\begin{lstlisting}
+    frq@Fred-Kubuntu:~/TP1-FREDERICO$ ls -R
+    .:
+    doc.pdf  Makefile  src
+    
+    ./src:
+    lib  tcpClient.c  tcpServer.c
+    
+    ./src/lib:
+    protocolUtility.c  tcpClientUtility.c  tcpServerUtility.c
+    protocolUtility.h  tcpClientUtility.h  tcpServerUtility.h    
+\end{lstlisting}
+\vspace{1em}
+
+\subsection{Bibliotecas}
+
+Nesta subseção será descrito brevemente o conteúdo e as funcionalidades de cada módulo construída. \par
+
+\textbf{protocolUtility.h}: Neste módulo estão todas as estruturas comuns ao protocolo, além de constantes (enums) e funções comuns ao cliente e ao servidor. \par
+\textbf{tcpServerUtility.h}: Neste módulo estão implementadas as funções utilizadas pelo servidor para estabelecer o socket e controlar o jogo do cliente. \par
+\textbf{tcpClientUtility.h}: Neste módulo estão as funções que o cliente utiliza para se conectar com o servidor e enviar palpites.
+
+\section{Compilação e Execução dos Programas}
+
+Foi criado um arquivo Makefile para compilar os dois programas. Ao executar o comando \emph{make} na raíz do projeto, o código é compilado e são gerados dois execuáveis, \textbf{servidor} e \textbf{cliente}. \par
+
+\begin{itemize}
+    \item Sintaxe de uso do \textbf{servidor}:
+    \begin{verbatim}
+        ./servidor <porta>
+    \end{verbatim}
+    \item  Sintaxe de uso do \textbf{cliente}:
+    \begin{verbatim}
+        ./cliente <ip-servidor> <porta-servidor>
+    \end{verbatim}
+\end{itemize}
+
+\newpage
+
+\section{Referências}
+
+A principal referência utilizada para construçao deste projeto foi a leitura do livro ``TCP IP Sockets in C, Second Edition Practical Guide for Programmers'', disponibilizado pelo professor no moodle da turma TW. \par
+
+\begin{itemize}
+    \item TCP IP Sockets in C, Second Edition Practical Guide for Programmers.pdf
+    \item Manual linux sobre implementação do protocolo \href{https://man7.org/linux/man-pages/man7/ip.7.html}{IPv4}
+    \item GeeksForGeeks: \href{https://www.geeksforgeeks.org/socket-programming-cc/}{Socket Programming in C/C++}
+    \item Documentação da função \href{https://man7.org/linux/man-pages/man3/getaddrinfo.3.html}{getaddrinfo(3)}.
+    \item Documentação da função \href{https://linux.die.net/man/7/socket}{socket()}
+    \item Documentação da função \href{https://linux.die.net/man/2/listen}{listen()}
+    \item Documentação da função \href{https://man7.org/linux/man-pages/man3/strerror.3.html}{strerror()}
+    \item Documentação da função \href{https://man7.org/linux/man-pages/man2/connect.2.html}{connect()}
+    \item Documentação da função \href{https://man7.org/linux/man-pages/man3/inet_pton.3.html}{inet\_pton()}
+    \item Documentação da função \href{https://linux.die.net/man/3/optarg}{optarg()}
+    \item Documentação da função \href{https://man7.org/linux/man-pages/man2/bind.2.html}{bind()}.
+\end{itemize}
 
 \end{document}

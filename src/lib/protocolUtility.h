@@ -13,9 +13,6 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
-#define IP_VERSION AF_INET
-// AF_INET : IPv4
-// AF_INET6: IPv6
 
 enum sizeConstants {
   MAX_OCCURRENCES = 256,
