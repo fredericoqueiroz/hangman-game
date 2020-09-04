@@ -75,7 +75,10 @@ O esquema a seguir apresenta visualmente o funcionamento básico e o relacioname
 O servidor utiliza a função \emph{setupServerSocket()} para estabelecer um socket.
 O cliente utiliza a função \emph{setupClientSocket()} para estabelecer um socket, e em seguida, se conectar ao servidor.
 A conexão é aceita pelo servidor através da função \emph{}{acceptClientConnection()}.
-A partir desse ponto, servidor e cliente começam a trocar mensagens através das funções \emph{sendMessage()} e \emph{recieveMessage()} até que o cliente acerte a palavra e receba a mensagem de fim de jogo.
+A partir desse ponto, servidor e cliente começam a trocar mensagens através das funções \emph{sendMessage()} e \emph{recieveMessage()} até que o cliente acerte a palavra e receba a mensagem de fim de jogo. \par
+A palavra que o cliente deve adivinhar é passada como parâmetro para a função \emph{handleServerGame()}.
+A palavra portanto está fixada no código do servidor. A palavra é `casa'.
+
 
 \subsection{Interoperabilidade de versões (IPv4 e IPv6)}
 Graças a função \emph{getaddrinfo()} da biblioteca \emph{sys/socket.h} (link para o manual nas referências)

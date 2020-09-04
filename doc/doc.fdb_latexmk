@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1598921382 "/home/frq/GitHub/hangman-game/doc/doc.tex" "/home/frq/GitHub/hangman-game/doc/doc.pdf" "doc" 1598921382
+["pdflatex"] 1599241373 "/home/frq/GitHub/hangman-game/doc/doc.tex" "/home/frq/GitHub/hangman-game/doc/doc.pdf" "doc" 1599241407
   "/etc/texmf/web2c/texmf.cnf" 1566777647 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/frq/GitHub/hangman-game/doc/doc.aux" 1598921382 2449 78bf66b45b0e8cc11dc98c7069d8a6ac ""
-  "/home/frq/GitHub/hangman-game/doc/doc.tex" 1598921382 9582 6dbe9632e58befabf28ad472b30ddff9 ""
+  "/home/frq/GitHub/hangman-game/doc/doc.aux" 1599241373 2449 78bf66b45b0e8cc11dc98c7069d8a6ac ""
+  "/home/frq/GitHub/hangman-game/doc/doc.tex" 1599241407 9774 b6fb61835e5d1f054941032c48ea8615 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -102,13 +102,13 @@
   "Figura3.png" 1598911163 7074 8557f4b4f083feaaf787f95f08849400 ""
   "Figura4.png" 1598911266 8796 448c44b65080732c67bccc64ccbb68c1 ""
   "Figura5.png" 1598911282 8733 4c384dbf6bcd0b03418f2511ae92e203 ""
-  "doc.aux" 1598921382 2449 78bf66b45b0e8cc11dc98c7069d8a6ac ""
-  "doc.out" 1598921382 622 8ac543e6518dccd25413d68326177d9d ""
-  "doc.tex" 1598921382 9582 6dbe9632e58befabf28ad472b30ddff9 ""
+  "doc.aux" 1599241373 2449 78bf66b45b0e8cc11dc98c7069d8a6ac ""
+  "doc.out" 1599241373 622 8ac543e6518dccd25413d68326177d9d ""
+  "doc.tex" 1599241407 9774 b6fb61835e5d1f054941032c48ea8615 ""
   (generated)
-  "doc.log"
   "/home/frq/GitHub/hangman-game/doc/doc.log"
-  "doc.pdf"
   "doc.aux"
-  "doc.out"
   "/home/frq/GitHub/hangman-game/doc/doc.pdf"
+  "doc.pdf"
+  "doc.log"
+  "doc.out"
